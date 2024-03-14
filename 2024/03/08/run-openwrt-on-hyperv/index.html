@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2024/03/08/HeBQaxnAY8DzjIL.png">
 <meta property="article:published_time" content="2024-03-08T14:58:03.000Z">
-<meta property="article:modified_time" content="2024-03-14T06:18:25.952Z">
+<meta property="article:modified_time" content="2024-03-14T06:39:37.410Z">
 <meta property="article:author" content="铃萤-RinLin">
 <meta property="article:tag" content="Hyper-V">
 <meta property="article:tag" content="OpenWrt">
@@ -719,19 +719,25 @@
   
     <article id="comments">
       
-  <div id="gitalk-container"></div>
+  <div id="twikoo"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
         var options = Object.assign(
-          {"clientID":"11a661c8a8b629e05fba","clientSecret":"d093ec8c3b575aeaa952e2dda0014c7a832d3463","repo":"https://github.com/RinLin-NYA/RinLin-NYA.github.io","owner":"RinLin-NYA","admin":["RinLin-NYA"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {"envId":"https://rinlin-nya.github.io","region":null,"path":"window.location.pathname"},
           {
-            id: 'd8bcb8654a22df4098774f44d15f9a3a'
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
           }
         )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        twikoo.init(options)
       });
     });
   </script>

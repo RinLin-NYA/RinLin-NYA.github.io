@@ -24,7 +24,7 @@
 <meta property="og:description" content="本文为 铃萤-RinLin’s Hexo&amp;GithubPages Blog 的全站版权声明。使用本站文章前，请先阅读本声明。 第一节：版权声明本站的文章分为以下几部分：  由 铃萤-RinLin 所编写的原创性文章 由 铃萤-RinLin 于外站获得原作者授权或依据外站版权许可合规转载的文章 由其他作者编写并授权 铃萤-RinLin 在本站发表的文章  对于第一部分的文章：Copyleft">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-14T04:42:17.000Z">
-<meta property="article:modified_time" content="2024-03-14T05:50:03.506Z">
+<meta property="article:modified_time" content="2024-03-14T06:39:35.321Z">
 <meta property="article:author" content="铃萤-RinLin">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -286,19 +286,25 @@
   
     <article id="comments">
       
-  <div id="gitalk-container"></div>
+  <div id="twikoo"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
         var options = Object.assign(
-          {"clientID":"11a661c8a8b629e05fba","clientSecret":"d093ec8c3b575aeaa952e2dda0014c7a832d3463","repo":"https://github.com/RinLin-NYA/RinLin-NYA.github.io","owner":"RinLin-NYA","admin":["RinLin-NYA"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {"envId":"https://rinlin-nya.github.io","region":null,"path":"window.location.pathname"},
           {
-            id: '022f3ce814927f3842e3bba8eac93c4f'
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              Fluid.utils.listenDOMLoaded(function() {
+                var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+                Fluid.plugins.imageCaption(imgSelector);
+                Fluid.plugins.fancyBox(imgSelector);
+              });
+            }
           }
         )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        twikoo.init(options)
       });
     });
   </script>
