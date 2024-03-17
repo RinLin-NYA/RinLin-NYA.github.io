@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2024/03/08/HeBQaxnAY8DzjIL.png">
 <meta property="article:published_time" content="2024-03-08T14:58:03.000Z">
-<meta property="article:modified_time" content="2024-03-14T06:39:37.410Z">
+<meta property="article:modified_time" content="2024-03-17T15:01:14.695Z">
 <meta property="article:author" content="铃萤-RinLin">
 <meta property="article:tag" content="Hyper-V">
 <meta property="article:tag" content="OpenWrt">
@@ -309,7 +309,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年3月14日 下午
+                    本文最后更新于 2024年3月17日 晚上
                   
                 
               </p>
@@ -537,7 +537,7 @@
 </div>
 
 <p>至此，服务配置完成。我们可以开始创建新的虚拟网络交换机了。</p>
-<h3 id="创建并使用新的虚拟网络交换机"><a href="#创建并使用新的虚拟网络交换机" class="headerlink" title="创建并使用新的虚拟网络交换机"></a>创建并使用新的虚拟网络交换机</h3><p>创建虚拟网络交换机的步骤与本文第一步第一部分第二节的步骤<strong>完全一致</strong>，名称任取即可。请注意：我们这里需要创建的虚拟网络交换机是<strong>内部虚拟交换机</strong>，并且这里建议在创建这一内部虚拟交换机之前<strong>删除或禁用已有的任何外部虚拟交换机</strong>。删除虚拟交换机的步骤：进入虚拟交换机管理器，选择要删除的虚拟交换机，点击“移除”后应用即可。</p>
+<h3 id="创建并使用新的虚拟网络交换机"><a href="#创建并使用新的虚拟网络交换机" class="headerlink" title="创建并使用新的虚拟网络交换机"></a>创建并使用新的虚拟网络交换机</h3><p>创建虚拟网络交换机的步骤与本文第三步第一部分第二节的步骤<strong>完全一致</strong>，名称任取即可。请注意：我们这里需要创建的虚拟网络交换机是<strong>内部虚拟交换机</strong>，并且这里建议在创建这一内部虚拟交换机之前<strong>删除或禁用已有的任何外部虚拟交换机</strong>。删除虚拟交换机的步骤：进入虚拟交换机管理器，选择要删除的虚拟交换机，点击“移除”后应用即可。</p>
 <p>回到我们的 Hyper-V 管理器，找到我们配置的 OpenWrt 虚拟机，进入其属性页面，将我们在第三步第二部分中添加的外部虚拟交换机更改为我们创建的第二个内部虚拟交换机，应用即可。这里我的内部虚拟交换机命名为了“vlan_wan_ics”，所以最后效果应该如下图所示，蓝框部分应该发生了变化：</p>
 <p><img src="https://s2.loli.net/2024/03/08/VR5kLnWXoQAszYI.png" alt="第二个内部虚拟交换机"></p>
 <p>到这里，我们就可以进入下一步：设置网络共享了。</p>
@@ -598,34 +598,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Windows/" class="category-chain-item">Windows</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Windows/OpenWrt/" class="category-chain-item">OpenWrt</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
   <a href="/categories/Original/" class="category-chain-item">Original</a>
-  
-  
-
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Hyper-V/" class="category-chain-item">Hyper-V</a>
   
   
 
