@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#d3e0f7cf">
   <meta name="author" content="铃萤-RinLin">
   <meta name="keywords" content="">
   
@@ -20,12 +20,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Hyper-V 上运行 OpenWrt">
 <meta property="og:url" content="https://rinlin-nya.github.io/2024/03/08/run-openwrt-on-hyperv/index.html">
-<meta property="og:site_name" content="铃萤-RinLin&#39;s Hexo&amp;GithubPages Blog">
+<meta property="og:site_name" content="铃萤-RinLin&#39;s Blog">
 <meta property="og:description" content="这是一篇简单描述我如何在 Windows 自带的 Hyper-V 虚拟化平台中创建和配置 OpenWrt 虚拟机，并将其配置为旁路由以接管本机流量且实现一些额外操作的文章。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2024/03/08/HeBQaxnAY8DzjIL.png">
 <meta property="article:published_time" content="2024-03-08T14:58:03.000Z">
-<meta property="article:modified_time" content="2024-03-17T15:01:14.695Z">
+<meta property="article:modified_time" content="2024-03-23T05:42:14.154Z">
 <meta property="article:author" content="铃萤-RinLin">
 <meta property="article:tag" content="Hyper-V">
 <meta property="article:tag" content="OpenWrt">
@@ -34,7 +34,7 @@
   
   
   
-  <title>在 Hyper-V 上运行 OpenWrt - 铃萤-RinLin&#39;s Hexo&amp;GithubPages Blog</title>
+  <title>在 Hyper-V 上运行 OpenWrt - 铃萤-RinLin&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -76,7 +76,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"rinlin-nya.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"rinlin-nya.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -102,7 +102,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>铃萤-RinLin&#39;s Hexo Blog</strong>
+      <strong>铃萤-RinLin&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -168,9 +168,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
               </a>
             </li>
           
@@ -180,9 +180,9 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/links/" target="_self">
-                <i class="iconfont icon-link-fill"></i>
-                <span>友链</span>
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于 铃萤-RinLin</span>
               </a>
             </li>
           
@@ -309,7 +309,7 @@
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2024年3月17日 晚上
+                    本文最后更新于 2024年3月23日 下午
                   
                 
               </p>
@@ -574,7 +574,7 @@
 <p>从搭建 blog 网页到铃萤编写这篇文章，这一过程一共花费了铃萤五天的时间，虽然时常会感觉到累，但是看到 blog 最终成型的那一刻，我觉得：我做的这一切都是值得的。</p>
 <p>接下来，我将会发布以下主题的几篇文章，虽然下一次发布可能不知道是什么时候了（</p>
 <ol>
-<li>介绍铃萤自己</li>
+<li><del>介绍铃萤自己</del>(已完结)</li>
 <li>介绍铃萤搭建 blog 的过程</li>
 <li>介绍 OpenWrt 虚拟机的一些进阶用法</li>
 </ol>
@@ -813,7 +813,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <span style="font-size:14px; text-align:left;">This blog is based on</span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span style="font-size:14px; text-align:left;">Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span style="font-size:14px; text-align:left;">Fluid</span></a> <span style="font-size:14px; text-align:left;">, go to their Github repository page and give them a star to support them.</span> <br><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://rinlin-nya.github.io"><span style="font-size:14px; text-align:left;">All of articles in this blog</span></a> <span style="font-size:14px; text-align:left;">by</span> <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://rinlin-nya.github.io/about"><span style="font-size:14px; text-align:left;">铃萤-RinLin</span></a> <span style="font-size:14px; text-align:left;">are licensed under</span> <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"><span style="font-size:14px; text-align:left;">Attribution-ShareAlike 4.0 International</span></a>, <span style="font-size:14px; text-align:left;">unless other information in some article(s) was given.</span></p>  
     </div>
   
   
@@ -973,5 +973,11 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
+
+    <script type="text/javascript">
+      /* 页面 banner 覆盖全屏 */
+      $(".scroll-down-bar .scroll-down-arrow").css({"margin-top":"3rem"});
+      $("#board").css({"margin-top":"0"});
+    </script>
 </body>
 </html>
